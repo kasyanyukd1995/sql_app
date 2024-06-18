@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sql_app/features/navigation/router/app_router.dart';
 import 'package:sql_app/src/data/repositories/index.dart';
 import 'package:sql_app/src/domain/entities/index.dart';
 import 'package:sql_app/src/shared/base/base_manager.dart';
@@ -21,10 +22,14 @@ class HomeManager extends BaseManager<HomePageState> {
 
   @override
   Future<void> onInit() async {
-    _initMockData();
+    await _initMockData();
+
+    state = const HomePageState.loaded();
   }
 
-  void onWaiterTap() {}
+  void onWaiterTap() {
+    routing.push(const TableRoute());
+  }
 
   void onCashierTap() {}
 
@@ -46,78 +51,78 @@ class HomeManager extends BaseManager<HomePageState> {
 
     await _productRepository.insertProduct(
       const ProductEntity(
-        name: 'Product1',
-        description: 'description',
+        name: 'Кола',
+        description: 'Очень хорошая водичка',
         price: 100.0,
-        category: 'Group1',
+        category: 'Напитки',
         inStock: 1,
       ),
     );
 
     await _productRepository.insertProduct(
       const ProductEntity(
-        name: 'Product2',
-        description: 'description',
+        name: 'Спрайт',
+        description: 'Очень хорошая водичка',
         price: 100.0,
-        category: 'Group1',
+        category: 'Напитки',
         inStock: 1,
       ),
     );
 
     await _productRepository.insertProduct(
       const ProductEntity(
-        name: 'Product3',
-        description: 'description',
-        price: 100.0,
-        category: 'Group1',
+        name: 'Сок',
+        description: 'Очень хороший сок',
+        price: 200.0,
+        category: 'Напитки',
         inStock: 1,
       ),
     );
 
     await _productRepository.insertProduct(
       const ProductEntity(
-        name: 'Product21',
-        description: 'description',
-        price: 100.0,
-        category: 'Group2',
+        name: 'Горховый',
+        description: 'Очень хороший суп',
+        price: 200.0,
+        category: 'Супы',
         inStock: 1,
       ),
     );
 
     await _productRepository.insertProduct(
       const ProductEntity(
-        name: 'Product22',
-        description: 'description',
-        price: 100.0,
-        category: 'Group2',
+        name: 'Легкий',
+        description: 'Очень хороший суп',
+        price: 200.0,
+        category: 'Супы',
         inStock: 1,
       ),
     );
 
     await _productRepository.insertProduct(
       const ProductEntity(
-        name: 'Product23',
-        description: 'description',
-        price: 100.0,
-        category: 'Group2',
+        name: 'Грибной',
+        description: 'Очень хороший суп',
+        price: 200.0,
+        category: 'Супы',
         inStock: 1,
       ),
     );
     await _productRepository.insertProduct(
       const ProductEntity(
-        name: 'Product31',
-        description: 'description',
-        price: 100.0,
-        category: 'Group3',
+        name: 'Стейк',
+        description: 'Очень хороший стейк',
+        price: 200.0,
+        category: 'Горячее',
         inStock: 1,
       ),
     );
     await _productRepository.insertProduct(
       const ProductEntity(
-        name: 'Product32',
-        description: 'description',
-        price: 100.0,
-        category: 'Group3',
+        name: 'Котлета по киевски',
+        description: 'Очень хорошая котлета',
+        price: 200.0,
+        category: 'Горячее',
         inStock: 1,
       ),
     );

@@ -13,7 +13,7 @@ class OrderItemEntity with _$OrderItemEntity {
     @JsonKey(name: 'quantity') required int quantity,
     @JsonKey(name: 'price') required double price,
     @JsonKey(name: 'order_item_id') int? id,
-  }) = _OrderItemEntity;
+}) = _OrderItemEntity;
 
   factory OrderItemEntity.fromJson(Map<String, dynamic> json) =>
       _$OrderItemEntityFromJson(json);

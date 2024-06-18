@@ -5,6 +5,7 @@ class OrderItemRepository {
   final DatabaseHelper _databaseHelper;
 
   const OrderItemRepository(this._databaseHelper);
+  
   Future<int> insertOrderItem(OrderItemEntity orderItem) async {
     final db = await _databaseHelper.database;
     return db.insert('Order_Items', orderItem.toJson());

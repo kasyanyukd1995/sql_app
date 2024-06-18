@@ -1,10 +1,18 @@
 import 'package:sql_app/src/data/db/db_helper.dart';
 import 'package:sql_app/src/domain/entities/index.dart';
+import 'package:sql_app/src/domain/entities/order_flow_entity.dart';
 
 class OrdersRepository {
+  final List<OrderFlowEntity> _orders = [];
+  List<OrderFlowEntity> get orders => _orders;
+
   final DatabaseHelper _databaseHelper;
 
   OrdersRepository(this._databaseHelper);
+
+  void makeOrder(OrderFlowEntity order) {
+    _orders.add(order);
+  }
 
   Future<int> insertOrder(OrderEntity order) async {
     final db = await _databaseHelper.database;

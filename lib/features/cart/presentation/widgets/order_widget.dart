@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:sql_app/features/cart/presentation/vm/order_view_model.dart';
+import 'package:sql_app/src/presentation/index.dart';
+import 'package:sql_app/src/shared/extensions/context_extensions.dart';
 
-class OrderWidget extends StatelessWidget {
-  final OrderViewModel order;
-  final void Function(OrderViewModel model) increment;
-  final void Function(OrderViewModel model) decrement;
+class CartItemWidget extends StatelessWidget {
+  final CartItemViewModel order;
+  final void Function(CartItemViewModel model)? increment;
+  final void Function(CartItemViewModel model)? decrement;
 
-  const OrderWidget({
+  const CartItemWidget({
     required this.order,
     required this.increment,
     required this.decrement,
@@ -19,24 +22,31 @@ class OrderWidget extends StatelessWidget {
       leading: Image.network(order.imageUrl),
       title: Text(order.primaryText),
       subtitle: Text(order.secondaryText),
+      isThreeLine: true,
       trailing: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text('Total: \$${order.totalPrice.toStringAsFixed(2)}'),
           Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                icon: Icon(Icons.remove),
-                onPressed: () {
-                  decrement(order);
-                },
+              InkWell(
+                  child: const CircleAvatar(
+                    child: Icon(Icons.remove),
+                  ),
+                  onTap: () => decrement?.call(order)),
+              const Gap(6),
+              Text(
+                '${order.count}',
+                style: context.textTheme.paragraphLStrong,
               ),
-              Text('${order.count}'),
-              IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () {
-                  increment(order);
-                },
-              ),
+              const Gap(6),
+              InkWell(
+                  child: const CircleAvatar(
+                    child: Icon(Icons.add),
+                  ),
+                  onTap: () => increment?.call(order)),
             ],
           ),
         ],

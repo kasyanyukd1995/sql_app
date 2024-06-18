@@ -1,15 +1,19 @@
-class OrderViewModel {
+import 'package:sql_app/src/domain/entities/index.dart';
+
+class CartItemViewModel {
   final String imageUrl;
   final String primaryText;
   final String secondaryText;
   final double totalPrice;
-  int count;
+  final int count;
+  final ProductEntity domain;
 
-  OrderViewModel({
+  CartItemViewModel({
     required this.imageUrl,
     required this.primaryText,
     required this.secondaryText,
     required this.totalPrice,
     required this.count,
+    required this.domain,
   });
 }

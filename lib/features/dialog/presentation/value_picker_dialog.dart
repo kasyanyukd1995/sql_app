@@ -3,10 +3,10 @@ import 'package:gap/gap.dart';
 import 'package:sql_app/src/presentation/index.dart';
 import 'package:sql_app/src/shared/extensions/context_extensions.dart';
 
-class ValuePickerDialog<T> extends StatefulWidget {
-  final List<T> items;
+class ValuePickerDialog extends StatefulWidget {
+  final List<int> items;
   final String? title;
-  final String Function(T item) toTitle;
+  final String Function(int item) toTitle;
 
   const ValuePickerDialog({
     required this.items,
@@ -19,9 +19,9 @@ class ValuePickerDialog<T> extends StatefulWidget {
   State<ValuePickerDialog> createState() => _ValuePickerDialogState();
 }
 
-class _ValuePickerDialogState<T> extends State<ValuePickerDialog> {
+class _ValuePickerDialogState extends State<ValuePickerDialog> {
   late final initIndex = widget.items.length ~/ 2;
-  late T selectedValue = widget.items[initIndex];
+  late int selectedValue = widget.items[initIndex];
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _ValuePickerDialogState<T> extends State<ValuePickerDialog> {
                 }),
                 itemBuilder: (context, index) {
                   return Text(
-                    widget.toTitle(widget.items[index]),
+                    widget.items[index].toString(),
                     style: context.textTheme.paragraphLRegular,
                   );
                 },
@@ -66,7 +66,7 @@ class _ValuePickerDialogState<T> extends State<ValuePickerDialog> {
             ),
             const Gap(8),
             SqlAppButton.primary(
-              label: context.s.sendButton,
+              label: 'Выбрать',
               onPressed: () => Navigator.of(context).pop(selectedValue),
             ),
           ],

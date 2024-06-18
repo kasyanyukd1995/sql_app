@@ -10,12 +10,12 @@ class DialogService {
 
   DialogService(this._router);
 
-  Future<T?> showCupertinoPicker<T>({
-    required List<T> items,
+  Future<int?> showAmountPicker({
+    required List<int> items,
     String? title,
-    required String Function(T item) toTitle,
+    required String Function(int item) toTitle,
   }) {
-    return showModalBottomSheet<T>(
+    return showModalBottomSheet<int?>(
       context: _context,
       useSafeArea: true,
       constraints: BoxConstraints(
