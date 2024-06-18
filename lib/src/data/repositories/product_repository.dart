@@ -33,4 +33,10 @@ class ProductRepository {
     final db = await _databaseHelper.database;
     return db.delete('Products', where: 'product_id = ?', whereArgs: [id]);
   }
+  
+
+   Future<void> clearTable() async {
+    final db = await _databaseHelper.database;
+    await db.delete('Products');
+  }
 }

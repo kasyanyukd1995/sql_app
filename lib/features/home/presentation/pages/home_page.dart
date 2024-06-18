@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:sql_app/features/home/home_provider.di.dart';
+import 'package:sql_app/src/presentation/index.dart';
+import 'package:sql_app/src/shared/extensions/context_extensions.dart';
 
 @RoutePage()
 class HomePage extends ConsumerStatefulWidget {
@@ -26,11 +28,40 @@ class _HomePageState extends ConsumerState<HomePage> {
     final state = ref.watch(homeManagerProvider);
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: InkWell(
+                  onTap: manager.onWaiterTap,
+                  child: Card(
+                    child: Center(
+                      child: Text(
+                        'Официант',
+                        style: context.textTheme.title.copyWith(color: SqlAppColors.main),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: InkWell(
+                  onTap: manager.onCashierTap,
+                  child: Card(
+                    child: Center(
+                      child: Text(
+                        'Кассир',
+                        style: context.textTheme.title.copyWith(color: SqlAppColors.main),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -6,5 +6,7 @@ final homeManagerProvider = StateNotifierProvider.autoDispose<HomeManager, HomeP
   (ref) => HomeManager(
     ref.read(productRepositoryProvider),
     ref.read(waiterRepositoryProvider),
+    ref.read(ordersItemRepositoryProvider),
+    ref.read(ordersRepositoryProvider),
   ),
 );

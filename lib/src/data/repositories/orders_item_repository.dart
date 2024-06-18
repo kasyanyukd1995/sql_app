@@ -33,4 +33,9 @@ class OrderItemRepository {
     final db = await _databaseHelper.database;
     return db.delete('Order_Items', where: 'order_item_id = ?', whereArgs: [id]);
   }
+
+  Future<void> clearTable() async {
+    final db = await _databaseHelper.database;
+    await db.delete('Order_Items');
+  }
 }
