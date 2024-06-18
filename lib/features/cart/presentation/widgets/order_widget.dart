@@ -31,22 +31,24 @@ class CartItemWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                  child: const CircleAvatar(
-                    child: Icon(Icons.remove),
-                  ),
-                  onTap: () => decrement?.call(order)),
+              if (decrement != null)
+                InkWell(
+                    child: const CircleAvatar(
+                      child: Icon(Icons.remove),
+                    ),
+                    onTap: () => decrement?.call(order)),
               const Gap(6),
               Text(
                 '${order.count}',
                 style: context.textTheme.paragraphLStrong,
               ),
               const Gap(6),
-              InkWell(
-                  child: const CircleAvatar(
-                    child: Icon(Icons.add),
-                  ),
-                  onTap: () => increment?.call(order)),
+              if (increment != null)
+                InkWell(
+                    child: const CircleAvatar(
+                      child: Icon(Icons.add),
+                    ),
+                    onTap: () => increment?.call(order)),
             ],
           ),
         ],

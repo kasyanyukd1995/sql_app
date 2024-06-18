@@ -40,7 +40,7 @@ class CartPage extends ConsumerWidget {
               const Gap(16),
               SqlAppButton.primary(
                 label: 'Сделать заказ',
-                onPressed: () {},
+                onPressed: manager.onMakeOrderTap,
               ),
             ],
           ),

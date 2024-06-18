@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:sql_app/features/cart/presentation/vm/order_view_model.dart';
 import 'package:sql_app/features/cart/presentation/widgets/order_widget.dart';
 import 'package:sql_app/src/domain/entities/order_flow_entity.dart';
+import 'package:sql_app/src/presentation/index.dart';
 import 'package:sql_app/src/providers/repositories_providers.di.dart';
 
 @RoutePage()
@@ -19,12 +20,13 @@ class OrdersPage extends ConsumerWidget {
     final orders = ordersRepository.orders;
 
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView.separated(
             itemBuilder: (context, index) {
-             return OrderWidget(
+              return OrderWidget(
                 order: orders[index],
               );
             },
@@ -48,28 +50,41 @@ class OrderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartItems = order.products ?? [];
-    return Container(
-      child: Column(
-        children: [
-          Text('${order.waiter?.firstName ?? ''}  ${order.waiter?.lastName ?? ''}'),
-          const Gap(16),
-          ListView.separated(
-            itemBuilder: (context, index) => CartItemWidget(
-                order: CartItemViewModel(
-                  domain: cartItems[index].productEntity,
-                  imageUrl:
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJvrjzxOfQpQaqRvdz-oJJS4_evtYSw8op2g&s',
-                  primaryText: cartItems[index].productEntity.name,
-                  secondaryText: cartItems[index].productEntity.description,
-                  totalPrice: cartItems[index].productEntity.price * cartItems[index].quantity,
-                  count: cartItems[index].quantity,
-                ),
-                increment: null,
-                decrement: null),
-            separatorBuilder: (context, index) => Gap(8),
-            itemCount: cartItems.length,
-          )
-        ],
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Официант: ${order.waiter?.firstName ?? ''}  ${order.waiter?.lastName ?? ''}'),
+            const Gap(16),
+            Text('Стол №${order.tableNumber}'),
+            const Gap(16),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) => CartItemWidget(
+                  order: CartItemViewModel(
+                    domain: cartItems[index].productEntity,
+                    imageUrl:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJvrjzxOfQpQaqRvdz-oJJS4_evtYSw8op2g&s',
+                    primaryText: cartItems[index].productEntity.name,
+                    secondaryText: cartItems[index].productEntity.description,
+                    totalPrice: cartItems[index].productEntity.price * cartItems[index].quantity,
+                    count: cartItems[index].quantity,
+                  ),
+                  increment: null,
+                  decrement: null),
+              separatorBuilder: (context, index) => Gap(8),
+              itemCount: cartItems.length,
+            ),
+            const Gap(16),
+            SqlAppButton.primary(
+              label: 'Рассчитать',
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
     );
   }

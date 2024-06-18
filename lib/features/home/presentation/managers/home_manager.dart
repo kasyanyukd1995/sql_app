@@ -31,7 +31,9 @@ class HomeManager extends BaseManager<HomePageState> {
     routing.push(const TableRoute());
   }
 
-  void onCashierTap() {}
+  void onCashierTap() {
+    routing.push(const OrdersRoute());
+  }
 
   Future<void> _initMockData() async {
     await _waiterRepository.clearTable();
