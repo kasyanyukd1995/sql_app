@@ -5,7 +5,7 @@ import 'package:sql_app/features/cart/presentation/widgets/order_widget.dart';
 class CartPage extends StatelessWidget {
   final List<OrderViewModel> orders;
 
-  CartPage({required this.orders});
+  const CartPage({required this.orders, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,11 @@ class CartPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: orders.length,
         itemBuilder: (context, index) {
-          return OrderWidget(order: orders[index]);
+          return OrderWidget(
+            order: orders[index],
+            increment: (OrderViewModel model) {},
+            decrement: (OrderViewModel model) {},
+          );
         },
       ),
     );

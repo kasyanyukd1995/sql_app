@@ -3,8 +3,15 @@ import 'package:sql_app/features/cart/presentation/vm/order_view_model.dart';
 
 class OrderWidget extends StatelessWidget {
   final OrderViewModel order;
+  final void Function(OrderViewModel model) increment;
+  final void Function(OrderViewModel model) decrement;
 
-  OrderWidget({required this.order});
+  const OrderWidget({
+    required this.order,
+    required this.increment,
+    required this.decrement,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +27,14 @@ class OrderWidget extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.remove),
                 onPressed: () {
-                  // Decrease count
+                  decrement(order);
                 },
               ),
               Text('${order.count}'),
               IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
-                  // Increase count
+                  increment(order);
                 },
               ),
             ],
