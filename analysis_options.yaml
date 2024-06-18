@@ -1,0 +1,12 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    [
+      build/**,
+      lib/**.freezed.dart,
+      lib/src/data/api_services/**.json,
+      lib/**.g.dart,
+      lib/**.swagger.dart,
+      lib/**.swagger.chopper.dart,
+    ]

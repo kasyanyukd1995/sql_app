@@ -1,0 +1,108 @@
+{
+	//use case
+	"UseCase": {
+		"prefix": "use",
+		"body": [
+			"class  $1UseCase {",
+			"   $1UseCase();",
+			"",
+			"  void execute() {}",
+			"}",
+			""
+		],
+		"description": "need for UseCase"
+	},
+	// freezed
+	"freezed": {
+		"prefix": [
+			"freezed",
+			"fr",
+		],
+		"body": [
+			"import 'package:freezed_annotation/freezed_annotation.dart';",
+			"",
+			"part '$1.freezed.dart';",
+			"",
+			"@freezed",
+			"class $2 with _\\$$2 {",
+			"\tconst factory $2({$0}) = _$2;",
+			"}",
+		],
+	},
+	"Stateful Widget": {
+		"prefix": "stf",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"",
+			"class $1 extends StatefulWidget {",
+			"\tconst $1({super.key});",
+			"",
+			"\t@override",
+			"\t_$1State createState() => _$1State();",
+			"}",
+			"",
+			"class _$1State extends State<$1> {",
+			"\t@override",
+			"\tWidget build(BuildContext context) {",
+			"\t\treturn SizedBox();",
+			"\t}",
+			"}",
+		],
+		"description": "Create a new stateful widget."
+	},
+	"Stateless Widget": {
+		"prefix": "stl",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"",
+			"class $1 extends StatelessWidget {",
+			"\tconst $1({super.key});",
+			"",
+			"\t@override",
+			"\tWidget build(BuildContext context) {",
+			"\t\treturn  SizedBox();",
+			"\t}",
+			"}",
+		],
+		"description": "Create a new stateless widget."
+	},
+	"Consumer Stateful Widget": {
+		"prefix": "cstf",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"import 'package:flutter_riverpod/flutter_riverpod.dart';",
+			"",
+			"class $1 extends ConsumerStatefulWidget {",
+			"\tconst $1({super.key});",
+			"",
+			"\t@override",
+			"\tConsumerState<ConsumerStatefulWidget> createState() => _$1State();",
+			"}",
+			"",
+			"class _$1State extends ConsumerState<$1> {",
+			"\t@override",
+			"\tWidget build(BuildContext context) {",
+			"\t\treturn SizedBox();",
+			"\t}",
+			"}",
+		],
+		"description": "Create a new consumer stateful widget."
+	},
+	"Consumer Stateless Widget": {
+		"prefix": "cstl",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"import 'package:flutter_riverpod/flutter_riverpod.dart';",
+			"",
+			"class $1 extends ConsumerWidget {",
+			"\tconst $1({super.key});",
+			"",
+			"\t@override",
+			"\tWidget build(BuildContext context, WidgetRef ref) {",
+			"\t\treturn  SizedBox();",
+			"\t}",
+			"}",
+		],
+		"description": "Create a new consumer stateless widget."
+	}
+}
